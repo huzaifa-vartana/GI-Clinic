@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_home">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/navhome"
+            android:title="@string/home" />
+
+
+    </group>
+    <group android:id="@+id/menu_top">
+
+        <item
+            android:id="@+id/insta"
+            android:icon="@drawable/drama"
+            android:title="@string/attendance" />
+
+        <item
+            android:id="@+id/facebook"
+            android:icon="@drawable/video"
+            android:title="@string/movies" />
+        <item
+            android:id="@+id/youtube"
+            android:icon="@drawable/banner"
+            android:title="@string/sliders" />
+        <item
+            android:id="@+id/rateapp"
+            android:icon="@drawable/trend"
+            android:title="@string/trending" />
+
+    </group>
+    <group android:id="@+id/meny_bottom">
+
+
+        <item
+            android:id="@+id/close"
+            android:icon="@drawable/close"
+            android:title="@string/logout" />
+
+    </group>
+
+
+</menu>

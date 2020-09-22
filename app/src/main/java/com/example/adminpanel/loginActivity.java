@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity  {
+public class loginActivity extends AppCompatActivity  {
     EditText e1, e2;
     Button b1;
     MaterialTextView materialTextView;
@@ -85,11 +85,10 @@ public class MainActivity extends AppCompatActivity  {
                             Toast.makeText(getApplicationContext(), "You have been Logged in", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-//                            Intent intent = new Intent(getApplicationContext(), drawer_act.class);
-//                            startActivity(intent);
-//                            customType(login.this, "bottom-to-up");
+                            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                            startActivity(intent);
+                            finish();
 
-                            //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

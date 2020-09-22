@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Admin Panel</string>
+    <string name="home">Home</string>
+    <string name="making_life_easier">Hamara TV Admin</string>
+    <string name="attendance">Drama</string>
+    <string name="Records">Trending</string>
+    <string name="todo">Movies</string>
+    <string name="User_database">Sliders</string>
+    <string name="movies">Movies</string>
+    <string name="sliders">Sliders</string>
+    <string name="trending">Trending</string>
+    <string name="logout">Logout</string>
 </resources>
