@@ -58,29 +58,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(), "Home", 0).show();
                 break;
             case R.id.drama:
-//                Intent browserIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/hamaradramasinurdu/?hl=en"));
-//                startActivity(browserIntent1);
-                Toast.makeText(getApplicationContext(), "Home", 0).show();
+                Intent browserIntent1 = new Intent(getApplicationContext(), addDrama.class);
+                startActivity(browserIntent1);
+                Toast.makeText(getApplicationContext(), "Drama", 0).show();
 
                 break;
             case R.id.movies:
-//                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/HMKahania"));
-//                startActivity(browserIntent2);
-                Toast.makeText(getApplicationContext(), "Home", 0).show();
+                Intent browserIntent2 = new Intent(getApplicationContext(), addMovie.class);
+                startActivity(browserIntent2);
+                Toast.makeText(getApplicationContext(), "Movies", 0).show();
 
                 break;
             case R.id.sliders:
-//                Intent browserIntent3 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com"));
-//                startActivity(browserIntent3);
-                Toast.makeText(getApplicationContext(), "Home", 0).show();
+                Intent browserIntent3 = new Intent(getApplicationContext(), addSlider.class);
+                startActivity(browserIntent3);
+                Toast.makeText(getApplicationContext(), "Sliders", 0).show();
 
                 break;
             case R.id.trending:
-                Toast.makeText(getApplicationContext(), "Rate App on Playstore", 0).show();
-                Toast.makeText(getApplicationContext(), "Home", 0).show();
+                Intent browserIntent4 = new Intent(getApplicationContext(), addTrending.class);
+                startActivity(browserIntent4);
+                Toast.makeText(getApplicationContext(), "Trending", 0).show();
 
                 break;
             case R.id.logout:
+                Toast.makeText(getApplicationContext(), "Logged Out", 0).show();
                 finish();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
