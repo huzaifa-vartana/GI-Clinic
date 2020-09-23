@@ -14,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".addTrending"></activity>
+        <activity android:name=".addSlider" />
+        <activity android:name=".addMovie" />
+        <activity android:name=".addDrama" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".forgetPassword" />
         <activity android:name=".loginActivity">
             <intent-filter>

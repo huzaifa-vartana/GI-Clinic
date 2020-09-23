@@ -2,21 +2,21 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:id="@+id/drawer"
-    tools:openDrawer="end"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".HomeActivity"
+    tools:openDrawer="end">
 
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
         android:id="@+id/nav_view"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/main_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_height="match_parent" />
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/attent"
+                            android:layout_below="@id/dramaView"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="@string/attendance"
@@ -107,7 +107,7 @@
                             app:fontFamily="sans-serif-black" />
 
                         <ImageView
-                            android:id="@+id/attent"
+                            android:id="@+id/dramaView"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -130,7 +130,7 @@
                             android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/imageView3"
+                            android:layout_below="@id/trendingView"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="@string/Records"
@@ -138,7 +138,7 @@
                             app:fontFamily="sans-serif-black" />
 
                         <ImageView
-                            android:id="@+id/imageView3"
+                            android:id="@+id/trendingView"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -173,7 +173,7 @@
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/bus1"
+                            android:layout_below="@id/moviesView"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="@string/todo"
@@ -181,7 +181,7 @@
                             app:fontFamily="sans-serif-black" />
 
                         <ImageView
-                            android:id="@+id/bus1"
+                            android:id="@+id/moviesView"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -204,7 +204,7 @@
                             android:id="@+id/textView7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/train"
+                            android:layout_below="@id/slidersView"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="@string/User_database"
@@ -212,10 +212,11 @@
                             app:fontFamily="sans-serif-black" />
 
                         <ImageView
-                            android:id="@+id/train"
+                            android:id="@+id/slidersView"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/banner" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>

@@ -12,20 +12,20 @@
     <group android:id="@+id/menu_top">
 
         <item
-            android:id="@+id/insta"
+            android:id="@+id/drama"
             android:icon="@drawable/drama"
             android:title="@string/attendance" />
 
         <item
-            android:id="@+id/facebook"
+            android:id="@+id/movies"
             android:icon="@drawable/video"
             android:title="@string/movies" />
         <item
-            android:id="@+id/youtube"
+            android:id="@+id/sliders"
             android:icon="@drawable/banner"
             android:title="@string/sliders" />
         <item
-            android:id="@+id/rateapp"
+            android:id="@+id/trending"
             android:icon="@drawable/trend"
             android:title="@string/trending" />
 
@@ -34,7 +34,7 @@
 
 
         <item
-            android:id="@+id/close"
+            android:id="@+id/logout"
             android:icon="@drawable/close"
             android:title="@string/logout" />
 
