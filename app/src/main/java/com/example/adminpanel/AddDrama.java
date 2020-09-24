@@ -1,10 +1,10 @@
 package com.example.adminpanel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class addDrama extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AddDrama extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

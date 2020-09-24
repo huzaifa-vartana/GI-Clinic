@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class loginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
     EditText e1, e2;
     Button b1;
     MaterialTextView materialTextView;
@@ -60,9 +60,9 @@ public class loginActivity extends AppCompatActivity  {
     }
 
     private void forgetPassword() {
-        Intent intent=new Intent(getApplicationContext(),forgetPassword.class);
+        Intent intent = new Intent(getApplicationContext(), ForgetPassword.class);
         startActivity(intent);
-    };
+    }
 
     public void signIn() {
         String email = e1.getText().toString().trim();

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
-    tools:context=".addMovie"
+    tools:context=".AddMovie"
     tools:openDrawer="end">
 
 

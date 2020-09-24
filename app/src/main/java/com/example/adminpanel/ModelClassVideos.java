@@ -4,14 +4,14 @@ import com.google.firebase.database.PropertyName;
 
 import java.io.Serializable;
 
-public class treningVideos implements Serializable {
+public class ModelClassVideos implements Serializable {
     private String Title, Description, Link, Image;
 
-    public treningVideos() {
+    public ModelClassVideos() {
 
     }
 
-    public treningVideos(String title, String desp, String vUrl, String iUrl) {
+    public ModelClassVideos(String title, String desp, String vUrl, String iUrl) {
         this.Title = title;
         this.Description = desp;
         this.Link = vUrl;

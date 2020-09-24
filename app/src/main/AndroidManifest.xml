@@ -14,13 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addTrending"></activity>
-        <activity android:name=".addSlider" />
-        <activity android:name=".addMovie" />
-        <activity android:name=".addDrama" />
+        <activity android:name=".AddTrending"></activity>
+        <activity android:name=".AddSlider" />
+        <activity android:name=".AddMovie" />
+        <activity android:name=".AddDrama" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".forgetPassword" />
-        <activity android:name=".loginActivity">
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

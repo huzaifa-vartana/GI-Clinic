@@ -58,25 +58,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(), "Home", 0).show();
                 break;
             case R.id.drama:
-                Intent browserIntent1 = new Intent(getApplicationContext(), addDrama.class);
+                Intent browserIntent1 = new Intent(getApplicationContext(), AddDrama.class);
                 startActivity(browserIntent1);
                 Toast.makeText(getApplicationContext(), "Drama", 0).show();
 
                 break;
             case R.id.movies:
-                Intent browserIntent2 = new Intent(getApplicationContext(), addMovie.class);
+                Intent browserIntent2 = new Intent(getApplicationContext(), AddMovie.class);
                 startActivity(browserIntent2);
                 Toast.makeText(getApplicationContext(), "Movies", 0).show();
 
                 break;
             case R.id.sliders:
-                Intent browserIntent3 = new Intent(getApplicationContext(), addSlider.class);
+                Intent browserIntent3 = new Intent(getApplicationContext(), AddSlider.class);
                 startActivity(browserIntent3);
                 Toast.makeText(getApplicationContext(), "Sliders", 0).show();
 
                 break;
             case R.id.trending:
-                Intent browserIntent4 = new Intent(getApplicationContext(), addTrending.class);
+                Intent browserIntent4 = new Intent(getApplicationContext(), AddTrending.class);
                 startActivity(browserIntent4);
                 Toast.makeText(getApplicationContext(), "Trending", 0).show();
 
@@ -117,16 +117,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.dramaView) {
-            Intent intent = new Intent(getApplicationContext(), addDrama.class);
+            Intent intent = new Intent(getApplicationContext(), AddDrama.class);
             startActivity(intent);
         } else if (v.getId() == R.id.moviesView) {
-            Intent intent = new Intent(getApplicationContext(), addMovie.class);
+            Intent intent = new Intent(getApplicationContext(), AddMovie.class);
             startActivity(intent);
         } else if (v.getId() == R.id.slidersView) {
-            Intent intent = new Intent(getApplicationContext(), addSlider.class);
+            Intent intent = new Intent(getApplicationContext(), AddSlider.class);
             startActivity(intent);
         } else if (v.getId() == R.id.trendingView) {
-            Intent intent = new Intent(getApplicationContext(), addTrending.class);
+            Intent intent = new Intent(getApplicationContext(), AddTrending.class);
             startActivity(intent);
         }
 
