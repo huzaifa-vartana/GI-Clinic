@@ -146,7 +146,7 @@ public class AddSlider extends AppCompatActivity implements NavigationView.OnNav
             if (aBoolean) {
                 databaseReference1.child(String.valueOf(count)).setValue(movies);
                 count++;
-                Toast.makeText(getApplicationContext(), "New trending video added", 0).show();
+                Toast.makeText(getApplicationContext(), "New slider video added", 0).show();
             }
         }
 
