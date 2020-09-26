@@ -75,14 +75,16 @@
                     android:hint="Enter Video Url"
                     android:textSize="20sp" />
 
-                <EditText
+                <Button
                     android:id="@+id/trendingImageUrl"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:hint="Enter Image Url"
-                    android:textSize="20sp" />
+                    android:background="@drawable/roundedbutton"
+                    android:text="Select Image"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/addTrendingBtn"

@@ -1,7 +1,9 @@
 package com.example.adminpanel;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -9,28 +11,39 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class AddSlider extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public Toolbar toolbar;
     EditText videoUrl, imageUrl;
-    Button btn;
+    public static final String TAG = "link";
     int count;
     boolean aBoolean = false;
     DatabaseReference databaseReference1, databaseReference2;
+    public static final int ImageBack = 1;
+    Button btn1, btn2;
+    Uri uri;
+    String i_url;
+    StorageReference storageReference;
+    boolean isaBoolean = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +61,10 @@ public class AddSlider extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
         videoUrl = findViewById(R.id.SliderVideoUrl);
-        imageUrl = findViewById(R.id.SliderImageUrl);
-        btn = findViewById(R.id.addSliderBtn);
+        btn1 = findViewById(R.id.addSliderBtn);
+        btn2 = findViewById(R.id.trendingImageUrl);
+        videoUrl = findViewById(R.id.SliderVideoUrl);
+        storageReference = FirebaseStorage.getInstance().getReference().child("SliderImages");
         databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Sliders");
         databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Sliders");
         databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -67,9 +82,14 @@ public class AddSlider extends AppCompatActivity implements NavigationView.OnNav
 
             }
         });
-
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageFromStorage();
+            }
+        });
 //        toggle.getDrawerArrowDrawable().setColor(Color.WHITE);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addTrendingVideo();
@@ -77,15 +97,59 @@ public class AddSlider extends AppCompatActivity implements NavigationView.OnNav
         });
     }
 
-    private void addTrendingVideo() {
-        String vu = imageUrl.getText().toString().trim();
-        String iu = videoUrl.getText().toString().trim();
-        ModelClassSliders movies = new ModelClassSliders(iu, vu);
-        if (aBoolean) {
-            databaseReference1.child(String.valueOf(count)).setValue(movies);
-            count++;
+    private void imageFromStorage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, ImageBack);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ImageBack) {
+            if (resultCode == RESULT_OK) {
+                uri = data.getData();
+                if (uri != null) {
+                    final StorageReference imageName = storageReference.child("image" + uri.getLastPathSegment());
+                    imageName.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            imageName.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Log.d(TAG, String.valueOf(uri));
+                                    i_url = String.valueOf(uri);
+                                    isaBoolean = true;
+                                    Toast.makeText(getApplicationContext(), "Image Uploaded to Storage", 0).show();
+
+                                }
+                            });
+
+                        }
+                    });
+                }
+
+
+            }
         }
+    }
+
+    private void addTrendingVideo() {
+        String vu = videoUrl.getText().toString().trim();
+        String iu = i_url;
+        if (vu.isEmpty() || isaBoolean == false) {
+            Toast.makeText(getApplicationContext(), "Enter Data before uploading", 0).show();
+        } else {
+            ModelClassSliders movies = new ModelClassSliders(iu, vu);
+            if (aBoolean) {
+                databaseReference1.child(String.valueOf(count)).setValue(movies);
+                count++;
+                Toast.makeText(getApplicationContext(), "New trending video added", 0).show();
+            }
+        }
+
     }
 
     @Override
