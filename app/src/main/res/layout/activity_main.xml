@@ -43,7 +43,7 @@
         android:drawablePadding="8dp"
         android:hint="Password"
         android:inputType="textPassword"
-        app:additionalTouchTargetSize="50dp" />
+        app:additionalTouchTargetSize="100dp" />
 
 
     <androidx.appcompat.widget.AppCompatButton
