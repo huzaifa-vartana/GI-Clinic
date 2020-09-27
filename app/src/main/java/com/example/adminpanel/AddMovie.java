@@ -141,14 +141,21 @@ public class AddMovie extends AppCompatActivity implements NavigationView.OnNavi
         String d = description.getText().toString().trim();
         String iu = videoUrl.getText().toString().trim();
         String vu = i_url;
-        if (t.isEmpty() || d.isEmpty() || iu.isEmpty() || isaBoolean == false) {
+        if (t.isEmpty() || d.isEmpty() || iu.isEmpty() || isaBoolean == false || i_url == "") {
             Toast.makeText(getApplicationContext(), "Enter Data before uploading", 0).show();
         } else {
+            if (!iu.contains("https://")) {
+                iu = "https://" + iu;
+            }
             ModelClassVideos trending = new ModelClassVideos(t, d, iu, vu);
             if (aBoolean) {
                 databaseReference1.child(String.valueOf(count)).setValue(trending);
                 count++;
                 Toast.makeText(getApplicationContext(), "New movie added", 0).show();
+                title.getText().clear();
+                description.getText().clear();
+                videoUrl.getText().clear();
+                i_url = "";
             }
         }
     }

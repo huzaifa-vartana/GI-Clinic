@@ -139,14 +139,19 @@ public class AddSlider extends AppCompatActivity implements NavigationView.OnNav
     private void addTrendingVideo() {
         String vu = videoUrl.getText().toString().trim();
         String iu = i_url;
-        if (vu.isEmpty() || isaBoolean == false) {
+        if (vu.isEmpty() || isaBoolean == false || i_url == "") {
             Toast.makeText(getApplicationContext(), "Enter Data before uploading", 0).show();
         } else {
+            if (!vu.contains("https://")) {
+                vu = "https://" + vu;
+            }
             ModelClassSliders movies = new ModelClassSliders(iu, vu);
             if (aBoolean) {
                 databaseReference1.child(String.valueOf(count)).setValue(movies);
                 count++;
                 Toast.makeText(getApplicationContext(), "New slider video added", 0).show();
+                videoUrl.getText().clear();
+                i_url = "";
             }
         }
 

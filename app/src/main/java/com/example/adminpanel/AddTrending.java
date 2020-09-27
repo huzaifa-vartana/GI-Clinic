@@ -124,15 +124,11 @@ public class AddTrending extends AppCompatActivity implements NavigationView.OnN
                                     imageUrl = String.valueOf(uri);
                                     isaBoolean = true;
                                     Toast.makeText(getApplicationContext(), "Image Uploaded to Storage", 0).show();
-
                                 }
                             });
-
                         }
                     });
                 }
-
-
             }
         }
     }
@@ -142,14 +138,22 @@ public class AddTrending extends AppCompatActivity implements NavigationView.OnN
         String d = description.getText().toString().trim();
         String iu = videoUrl.getText().toString().trim();
         String vu = imageUrl;
-        if (t.isEmpty() || d.isEmpty() || iu.isEmpty() || isaBoolean == false) {
+//            "https://res.cloudinary.com/yaseenys/image/upload/v1589212091/Ozge_Yagiz_mh1578784358331_hgutm6.jpg"
+        if (t.isEmpty() || d.isEmpty() || iu.isEmpty() || isaBoolean == false || imageUrl.equals("")) {
             Toast.makeText(getApplicationContext(), "Enter Data before uploading", 0).show();
         } else {
-            ModelClassVideos trending = new ModelClassVideos(t, d, iu, vu);
             if (aBoolean) {
+                if (!iu.contains("https://")) {
+                    iu = "https://" + iu;
+                }
+                ModelClassVideos trending = new ModelClassVideos(t, d, iu, vu);
                 databaseReference1.child(String.valueOf(count)).setValue(trending);
                 count++;
                 Toast.makeText(getApplicationContext(), "New trending video added", 0).show();
+                title.getText().clear();
+                description.getText().clear();
+                videoUrl.getText().clear();
+                imageUrl = "";
             }
         }
     }
