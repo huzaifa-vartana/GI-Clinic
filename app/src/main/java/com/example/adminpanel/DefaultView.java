@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +33,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AddDrama extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String TAG = "link";
+public class DefaultView extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String TAG = "dramaname" +
+            "";
     public static final int ImageBack = 1;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
@@ -50,31 +50,42 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
     DatabaseReference databaseReference1, databaseReference2;
     Uri uri;
     ListView listView;
-    String name, descp, img_url, video_url;
+    String name, descp, img_url, video_url, dramaName;
     StorageReference storageReference;
     boolean isaBoolean = false;
     String[] item;
     String[] img;
     String[] vid;
     String[] d2;
+    ExtendedFloatingActionButton extendedFloatingActionButton;
+    String episodeName, episodeVideoLink, episodeImageLink, episodeDescription;
+    String[] nameArray;
+    String[] imgArray;
+    String[] videoArray;
+    String[] descriptionArray;
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mVideosUrls = new ArrayList<>();
     private ArrayList<String> mVideosUrlsslider = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
     private ArrayList<String> d1 = new ArrayList<>();
-    ExtendedFloatingActionButton extendedFloatingActionButton;
+    private ArrayList<String> episodeNames = new ArrayList<>();
+    private ArrayList<String> episodeVideoLinks = new ArrayList<>();
+    private ArrayList<String> episodeImageLinks = new ArrayList<>();
+    private ArrayList<String> episodeDescriptions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adddrama);
+        setContentView(R.layout.activity_defaultview);
         listView = findViewById(R.id.listDrama);
+        dramaName = getIntent().getStringExtra("dramaName");
+        Log.d(TAG, dramaName);
         drawerLayout = findViewById(R.id.drawerDrama);
         navigationView = findViewById(R.id.navDrama);
         toolbar = findViewById(R.id.toolbarDrama);
         navigationView.bringToFront();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Drama");
+        getSupportActionBar().setTitle(dramaName);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -82,32 +93,33 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddNewDrama.class);
+                Intent intent = new Intent(getApplicationContext(), AddNewEpisode.class);
+                intent.putExtra("drama", dramaName);
                 startActivity(intent);
             }
         });
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-        databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Category");
-
-        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Episodes").child(dramaName);
+        databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    name = String.valueOf(dataSnapshot1.child("Title").getValue());
-                    descp = String.valueOf(dataSnapshot1.child("Episodes").getValue());
-                    img_url = String.valueOf(dataSnapshot1.child("Image").getValue());
-                    video_url = String.valueOf(dataSnapshot1.child("Drama").getValue());
-                    mNames.add(name);
-                    mImageUrls.add(img_url);
-                    mVideosUrls.add(video_url);
-                    d1.add(descp);
+                    episodeName = String.valueOf(dataSnapshot1.child("Title").getValue());
+                    episodeVideoLink = String.valueOf(dataSnapshot1.child("Link").getValue());
+                    episodeImageLink = String.valueOf(dataSnapshot1.child("Image").getValue());
+                    episodeDescription = String.valueOf(dataSnapshot1.child("Description").getValue());
+                    episodeNames.add(episodeName);
+                    episodeVideoLinks.add(episodeVideoLink);
+                    episodeImageLinks.add(episodeImageLink);
+                    episodeDescriptions.add(episodeDescription);
+                    //Log.d(TAG, name);
                 }
-                item = mNames.toArray(new String[0]);
-                img = mImageUrls.toArray(new String[0]);
-                vid = mVideosUrls.toArray(new String[0]);
-                d2 = d1.toArray(new String[0]);
-                MyAdapter adapter = new MyAdapter(getApplicationContext(), item, img, vid, d2);
+                nameArray = episodeNames.toArray(new String[0]);
+                imgArray = episodeImageLinks.toArray(new String[0]);
+                videoArray = episodeVideoLinks.toArray(new String[0]);
+                descriptionArray = episodeDescriptions.toArray(new String[0]);
+                MyAdapter adapter = new MyAdapter(getApplicationContext(), nameArray, imgArray, videoArray, descriptionArray);
                 listView.setAdapter(adapter);
             }
 
@@ -120,10 +132,10 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent browserIntent3 = new Intent(getApplicationContext(), DefaultView.class);
-                browserIntent3.putExtra("dramaName", mNames.get(position));
-                startActivity(browserIntent3);
-                Toast.makeText(getApplicationContext(), mNames.get(position), Toast.LENGTH_SHORT).show();
+//                Intent browserIntent3 = new Intent(getApplicationContext(), AddNewEpisode.class);
+//                browserIntent3.putExtra("dramaName", mNames.get(position));
+//                startActivity(browserIntent3);
+//                Toast.makeText(getApplicationContext(), mNames.get(position), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -199,7 +211,7 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         String[] rImgs;
 
         MyAdapter(Context c, String[] title, String[] i, String[] v, String[] d3) {
-            super(c, R.layout.row, R.id.textView1, title);
+            super(c, R.layout.simple_list, R.id.textView1, title);
             this.context = c;
             this.rTitle = title;
             this.img = i;
@@ -213,18 +225,18 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
-            ImageView images = row.findViewById(R.id.image);
+            View row = layoutInflater.inflate(R.layout.simple_list, parent, false);
+//            ImageView images = row.findViewById(R.id.image);
             TextView myTitle = row.findViewById(R.id.textView1);
-            TextView myDescription = row.findViewById(R.id.textView2);
+//            TextView myDescription = row.findViewById(R.id.textView2);
 //            myTitle.setTextColor(ContextCompat.getColor(context, R.color.white));
 //            myDescription.setTextColor(ContextCompat.getColor(context, R.color.white));
 
             // now set our resources on views
             //images.setImageResource(img[position]);
-            Picasso.get().load(img[position]).into(images);
+//            Picasso.get().load(img[position]).into(images);
             myTitle.setText(rTitle[position]);
-            myDescription.setText(d4[position]);
+//            myDescription.setText(d4[position]);
 
 
             return row;
