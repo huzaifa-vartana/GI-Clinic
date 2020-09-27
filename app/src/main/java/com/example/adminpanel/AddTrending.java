@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class AddTrending extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public DrawerLayout drawerLayout;
@@ -44,6 +46,7 @@ public class AddTrending extends AppCompatActivity implements NavigationView.OnN
     String imageUrl;
     StorageReference storageReference;
     boolean isaBoolean = false;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class AddTrending extends AppCompatActivity implements NavigationView.OnN
         videoUrl = findViewById(R.id.trendingVideoUrl);
         btn2 = findViewById(R.id.trendingImageUrl);
         btn1 = findViewById(R.id.addTrendingBtn);
+        imageView = findViewById(R.id.imageStorage);
         storageReference = FirebaseStorage.getInstance().getReference().child("TrendingImages");
         databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Trending");
         databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Trending");
@@ -123,6 +127,7 @@ public class AddTrending extends AppCompatActivity implements NavigationView.OnN
                                     Log.d(TAG, String.valueOf(uri));
                                     imageUrl = String.valueOf(uri);
                                     isaBoolean = true;
+                                    Picasso.get().load(uri).into(imageView);
                                     Toast.makeText(getApplicationContext(), "Image Uploaded to Storage", 0).show();
                                 }
                             });

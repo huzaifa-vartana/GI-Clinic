@@ -31,8 +31,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class AddNewDrama extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String TAG = "link";
+public class AddNewEpisode extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String TAG = "dramaname";
     public static final int ImageBack = 1;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
@@ -51,13 +51,15 @@ public class AddNewDrama extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addnewdrama);
+        setContentView(R.layout.activity_addnewepisode);
         drawerLayout = findViewById(R.id.drawerTrending);
+        String dramaName = getIntent().getStringExtra("drama");
+        Log.d(TAG, dramaName);
         navigationView = findViewById(R.id.navTrending);
         toolbar = findViewById(R.id.toolbarTrending);
         navigationView.bringToFront();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("New Drama");
+        getSupportActionBar().setTitle(dramaName);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -70,9 +72,10 @@ public class AddNewDrama extends AppCompatActivity implements NavigationView.OnN
         btn1 = findViewById(R.id.addTrendingBtn);
         imageView = findViewById(R.id.imageStorage);
 
-        storageReference = FirebaseStorage.getInstance().getReference().child("DramaImages");
-        databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Category");
-        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Category");
+        storageReference = FirebaseStorage.getInstance().getReference().child(dramaName);
+//        databaseReference1 = FirebaseDatabase.getInstance().getReference().child(dramaName);
+        databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Episodes").child(dramaName);
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Episodes").child(dramaName);
         databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -129,6 +132,7 @@ public class AddNewDrama extends AppCompatActivity implements NavigationView.OnN
                                     imageUrl = String.valueOf(uri);
                                     isaBoolean = true;
                                     Picasso.get().load(uri).into(imageView);
+
                                     Toast.makeText(getApplicationContext(), "Image Uploaded to Storage", 0).show();
                                 }
                             });
@@ -140,22 +144,22 @@ public class AddNewDrama extends AppCompatActivity implements NavigationView.OnN
     }
 
     private void addTrendingVideo() {
-        String titleDrama = title.getText().toString().trim();
-        String drama = description.getText().toString().trim();
-        String episodes = videoUrl.getText().toString().trim();
-        String img = imageUrl;
+        String t = title.getText().toString().trim();
+        String d = description.getText().toString().trim();
+        String iu = videoUrl.getText().toString().trim();
+        String vu = imageUrl;
 //            "https://res.cloudinary.com/yaseenys/image/upload/v1589212091/Ozge_Yagiz_mh1578784358331_hgutm6.jpg"
-        if (titleDrama.isEmpty() || drama.isEmpty() || episodes.isEmpty() || isaBoolean == false || imageUrl.equals("")) {
+        if (t.isEmpty() || d.isEmpty() || iu.isEmpty() || isaBoolean == false || imageUrl.equals("")) {
             Toast.makeText(getApplicationContext(), "Enter Data before uploading", 0).show();
         } else {
             if (aBoolean) {
-                if (!img.contains("https://")) {
-                    img = "https://" + img;
+                if (!iu.contains("https://")) {
+                    iu = "https://" + iu;
                 }
-                ModelClassNewDrama trending = new ModelClassNewDrama(titleDrama, img, episodes, drama);
+                ModelClassVideos trending = new ModelClassVideos(t, d, iu, vu);
                 databaseReference1.child(String.valueOf(count)).setValue(trending);
                 count++;
-                Toast.makeText(getApplicationContext(), "New drama added", 0).show();
+                Toast.makeText(getApplicationContext(), "New episode added", 0).show();
                 title.getText().clear();
                 description.getText().clear();
                 videoUrl.getText().clear();

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
-    tools:context=".AddNewDrama"
+    tools:context=".AddTrending"
     tools:openDrawer="end">
 
     <com.google.android.material.navigation.NavigationView
@@ -86,11 +86,12 @@
 
                 <EditText
                     android:id="@+id/trendingDescription"
+
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:hint="Enter Drama"
+                    android:hint="Enter Description"
                     android:textSize="20sp" />
 
                 <EditText
@@ -99,7 +100,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:hint="Enter Episodes"
+                    android:hint="Enter Video Url - "
                     android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -120,7 +121,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/roundedbutton"
-                    android:text="Add new drama"
+                    android:text="Add New Episode"
                     android:textColor="@color/white" />
 
 
