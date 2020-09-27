@@ -25,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,6 +62,7 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
     private ArrayList<String> mVideosUrlsslider = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
     private ArrayList<String> d1 = new ArrayList<>();
+    ExtendedFloatingActionButton extendedFloatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,14 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        extendedFloatingActionButton = findViewById(R.id.extendedFloatingActionButton);
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddNewDrama.class);
+                startActivity(intent);
+            }
+        });
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
         databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Category");
@@ -110,10 +120,10 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent browserIntent3 = new Intent(getApplicationContext(), defaultView.class);
+//                Intent browserIntent3 = new Intent(getApplicationContext(), AddNewEpisode.class);
 //                browserIntent3.putExtra("dramaName", mNames.get(position));
 //                startActivity(browserIntent3);
-                Toast.makeText(getApplicationContext(), d1.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), mNames.get(position), Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddNewEpisode"></activity>
+        <activity android:name=".AddNewDrama"></activity>
         <activity android:name=".AddTrending" />
         <activity android:name=".AddSlider" />
         <activity android:name=".AddMovie" />

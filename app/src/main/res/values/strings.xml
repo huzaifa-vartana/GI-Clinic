@@ -14,4 +14,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="http">https://</string>
     <string name="enter_video_url">Enter Video Url</string>
+    <string name="extended_fab_content_desc">New drama</string>
+    <string name="extended_fab_label">New drama</string>
 </resources>

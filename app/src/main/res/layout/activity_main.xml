@@ -46,7 +46,7 @@
         app:additionalTouchTargetSize="50dp" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signButton"
         android:layout_width="181dp"
         android:layout_height="38dp"
