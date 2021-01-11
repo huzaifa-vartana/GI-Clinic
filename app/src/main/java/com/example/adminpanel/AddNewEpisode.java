@@ -172,34 +172,34 @@ public class AddNewEpisode extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PatientHome.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Home", 0).show();
                 finish();
                 break;
-            case R.id.drama:
-                Intent browserIntent1 = new Intent(getApplicationContext(), AddDrama.class);
+            case R.id.book:
+                Intent browserIntent1 = new Intent(getApplicationContext(), BookAppointment.class);
                 startActivity(browserIntent1);
                 finish();
                 Toast.makeText(getApplicationContext(), "Drama", 0).show();
 
                 break;
-            case R.id.movies:
-                Intent browserIntent2 = new Intent(getApplicationContext(), AddMovie.class);
+            case R.id.doctor:
+                Intent browserIntent2 = new Intent(getApplicationContext(), PatientDoctorsAvailable.class);
                 startActivity(browserIntent2);
                 finish();
                 Toast.makeText(getApplicationContext(), "Movies", 0).show();
 
                 break;
-            case R.id.sliders:
-                Intent browserIntent3 = new Intent(getApplicationContext(), AddSlider.class);
+            case R.id.cancel:
+                Intent browserIntent3 = new Intent(getApplicationContext(), PatientCancelApp.class);
                 startActivity(browserIntent3);
                 finish();
                 Toast.makeText(getApplicationContext(), "Sliders", 0).show();
 
                 break;
-            case R.id.trending:
-                Intent browserIntent4 = new Intent(getApplicationContext(), AddTrending.class);
+            case R.id.updates:
+                Intent browserIntent4 = new Intent(getApplicationContext(), PatientUpdates.class);
                 startActivity(browserIntent4);
                 finish();
                 Toast.makeText(getApplicationContext(), "Trending", 0).show();

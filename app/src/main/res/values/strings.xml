@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Admin Panel</string>
+    <string name="app_name">GI-Clinic</string>
     <string name="home">Home</string>
-    <string name="making_life_easier">Hamara TV Admin</string>
+    <string name="making_life_easier">GI-Clinic</string>
     <string name="attendance">Drama</string>
     <string name="Records">Trending</string>
     <string name="todo">Movies</string>
@@ -17,4 +17,8 @@
     <string name="extended_fab_content_desc">New drama</string>
     <string name="extended_fab_label">New drama</string>
     <string name="dummy">Selected Image</string>
+    <string name="patient">Patient</string>
+    <string name="admin">Admin Staff</string>
+    <string name="doctor">Doctor</string>
+
 </resources>

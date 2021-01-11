@@ -27,19 +27,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AddDrama extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String TAG = "link";
+public class PatientDoctorsAvailable extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String TAG = "dramaname" +
+            "";
     public static final int ImageBack = 1;
+    private final ArrayList<String> doctorNames = new ArrayList<>();
+    private final ArrayList<String> availableStatuses = new ArrayList<>();
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public Toolbar toolbar;
@@ -50,80 +49,71 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
     DatabaseReference databaseReference1, databaseReference2;
     Uri uri;
     ListView listView;
-    String name, descp, img_url, video_url;
+    String name;
+    String descp;
+    int img_url;
+    String video_url;
+    String dramaName;
     StorageReference storageReference;
     boolean isaBoolean = false;
     String[] item;
-    String[] img;
+    int[] img;
     String[] vid;
     String[] d2;
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mVideosUrls = new ArrayList<>();
-    private ArrayList<String> mVideosUrlsslider = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
-    private ArrayList<String> d1 = new ArrayList<>();
     ExtendedFloatingActionButton extendedFloatingActionButton;
+    String doctorName1, doctorName2, doctorName3, doctorName4;
+    String availableStatus1, availableStatus2, availableStatus3, availableStatus4;
+    String[] doctorArray;
+    String[] availableArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adddrama);
-        listView = findViewById(R.id.listDrama);
-        drawerLayout = findViewById(R.id.drawerDrama);
-        navigationView = findViewById(R.id.navDrama);
-        toolbar = findViewById(R.id.toolbarDrama);
+        setContentView(R.layout.activity_patient_available_doctors);
+        listView = findViewById(R.id.listDoctor);
+        drawerLayout = findViewById(R.id.drawerDoctor);
+        navigationView = findViewById(R.id.navDoctor);
+        toolbar = findViewById(R.id.toolbarDoctor);
         navigationView.bringToFront();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Drama");
+        getSupportActionBar().setTitle("All Doctors");
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        extendedFloatingActionButton = findViewById(R.id.extendedFloatingActionButton);
-        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddNewDrama.class);
-                startActivity(intent);
-            }
-        });
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-        databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Category");
+        doctorName1 = "Dr. Huzaifa";
+        doctorName2 = "Dr. Khimji";
+        doctorName3 = "Dr. Bajwa";
+        doctorName4 = "Dr. Subhash";
+        availableStatus1 = "Available";
+        availableStatus2 = "Unavailable";
+        availableStatus3 = "Unavailable";
+        availableStatus4 = "Available";
+        doctorNames.add(doctorName1);
+        doctorNames.add(doctorName2);
+        doctorNames.add(doctorName3);
+        doctorNames.add(doctorName4);
+        availableStatuses.add(availableStatus1);
+        availableStatuses.add(availableStatus2);
+        availableStatuses.add(availableStatus3);
+        availableStatuses.add(availableStatus4);
 
-        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    name = String.valueOf(dataSnapshot1.child("Title").getValue());
-                    descp = String.valueOf(dataSnapshot1.child("Episodes").getValue());
-                    img_url = String.valueOf(dataSnapshot1.child("Image").getValue());
-                    video_url = String.valueOf(dataSnapshot1.child("Drama").getValue());
-                    mNames.add(name);
-                    mImageUrls.add(img_url);
-                    mVideosUrls.add(video_url);
-                    d1.add(descp);
-                }
-                item = mNames.toArray(new String[0]);
-                img = mImageUrls.toArray(new String[0]);
-                vid = mVideosUrls.toArray(new String[0]);
-                d2 = d1.toArray(new String[0]);
-                MyAdapter adapter = new MyAdapter(getApplicationContext(), item, img, vid, d2);
-                listView.setAdapter(adapter);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+//        img = mImageUrls.toArray(new String[0]);
 
-            }
-        });
+        doctorArray = doctorNames.toArray(new String[0]);
+        availableArray = availableStatuses.toArray(new String[0]);
 
+        MyAdapter adapter = new MyAdapter(getApplicationContext(), doctorArray, img, vid, availableArray);
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent browserIntent3 = new Intent(getApplicationContext(), DefaultView.class);
-                browserIntent3.putExtra("dramaName", mNames.get(position));
-                startActivity(browserIntent3);
-                Toast.makeText(getApplicationContext(), mNames.get(position), Toast.LENGTH_SHORT).show();
+//                Intent browserIntent3 = new Intent(getApplicationContext(), AddNewEpisode.class);
+//                browserIntent3.putExtra("dramaName", mNames.get(position));
+//                startActivity(browserIntent3);
+//                Toast.makeText(getApplicationContext(), mNames.get(position), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -133,46 +123,55 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PatientHome.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Home", 0).show();
                 finish();
                 break;
-            case R.id.drama:
-                Intent browserIntent1 = new Intent(getApplicationContext(), AddDrama.class);
+            case R.id.book:
+                Intent browserIntent1 = new Intent(getApplicationContext(), BookAppointment.class);
                 startActivity(browserIntent1);
                 finish();
-                Toast.makeText(getApplicationContext(), "Drama", 0).show();
+                Toast.makeText(getApplicationContext(), "Book Appointment", 0).show();
 
                 break;
-            case R.id.movies:
-                Intent browserIntent2 = new Intent(getApplicationContext(), AddMovie.class);
+            case R.id.doctor:
+                Intent browserIntent2 = new Intent(getApplicationContext(), PatientDoctorsAvailable.class);
                 startActivity(browserIntent2);
                 finish();
-                Toast.makeText(getApplicationContext(), "Movies", 0).show();
+                Toast.makeText(getApplicationContext(), "Available Doctors", 0).show();
 
                 break;
-            case R.id.sliders:
-                Intent browserIntent3 = new Intent(getApplicationContext(), AddSlider.class);
+            case R.id.cancel:
+                Intent browserIntent3 = new Intent(getApplicationContext(), PatientCancelApp.class);
                 startActivity(browserIntent3);
                 finish();
-                Toast.makeText(getApplicationContext(), "Sliders", 0).show();
+                Toast.makeText(getApplicationContext(), "Cancel Appointment", 0).show();
 
                 break;
-            case R.id.trending:
-                Intent browserIntent4 = new Intent(getApplicationContext(), AddTrending.class);
+            case R.id.updates:
+                Intent browserIntent4 = new Intent(getApplicationContext(), PatientUpdates.class);
                 startActivity(browserIntent4);
                 finish();
-                Toast.makeText(getApplicationContext(), "Trending", 0).show();
+                Toast.makeText(getApplicationContext(), "Updates", 0).show();
 
                 break;
+            case R.id.support:
+                Intent browserIntent5 = new Intent(getApplicationContext(), UserSupport.class);
+                startActivity(browserIntent5);
+                finish();
+                Toast.makeText(getApplicationContext(), "Support", 0).show();
+
+
             case R.id.logout:
                 Toast.makeText(getApplicationContext(), "Logged Out", 0).show();
                 finish();
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     @Override
     public void onBackPressed() {
@@ -181,6 +180,9 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), PatientHome.class);
+            startActivity(intent);
+            finish();
         }
 
 
@@ -194,11 +196,11 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
         ArrayList<String> vlink = new ArrayList<>();
         String[] rTitle;
         String[] d4;
-        String[] img;
+        int[] img;
         String[] v1;
         String[] rImgs;
 
-        MyAdapter(Context c, String[] title, String[] i, String[] v, String[] d3) {
+        MyAdapter(Context c, String[] title, int[] i, String[] v, String[] d3) {
             super(c, R.layout.row, R.id.textView1, title);
             this.context = c;
             this.rTitle = title;
@@ -221,8 +223,8 @@ public class AddDrama extends AppCompatActivity implements NavigationView.OnNavi
 //            myDescription.setTextColor(ContextCompat.getColor(context, R.color.white));
 
             // now set our resources on views
-            //images.setImageResource(img[position]);
-            Picasso.get().load(img[position]).into(images);
+//            images.setImageResource(img[position]);
+            Picasso.get().load(R.drawable.doctor).into(images);
             myTitle.setText(rTitle[position]);
             myDescription.setText(d4[position]);
 

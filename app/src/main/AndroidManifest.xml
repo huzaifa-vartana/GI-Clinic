@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <permission android:name="android.permission.INTERNET" />
 
@@ -16,14 +17,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddNewEpisode"></activity>
+        <activity android:name=".AdminDoctorAvailable"></activity>
+        <activity android:name=".DoctorCancelApp" />
+        <activity android:name=".AdminCancelApp" />
+        <activity android:name=".AdminUpdates" />
+        <activity android:name=".UserSupport" />
+        <activity android:name=".AllAppointments" />
+        <activity android:name=".PrescribeMedicine" />
+        <activity android:name=".PatientData" />
+        <activity android:name=".AssignDoctor" />
+        <activity android:name=".ConfirmAppointment" />
+        <activity android:name=".DoctorHome" />
+        <activity android:name=".AdminHome" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".AddNewEpisode" />
         <activity android:name=".DefaultView" />
         <activity android:name=".AddNewDrama" />
-        <activity android:name=".AddTrending" />
-        <activity android:name=".AddSlider" />
-        <activity android:name=".AddMovie" />
-        <activity android:name=".AddDrama" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".PatientUpdates" />
+        <activity android:name=".PatientCancelApp" />
+        <activity android:name=".PatientDoctorsAvailable" />
+        <activity android:name=".BookAppointment" />
+        <activity android:name=".PatientHome" />
         <activity android:name=".ForgetPassword" />
         <activity android:name=".LoginActivity">
             <intent-filter>

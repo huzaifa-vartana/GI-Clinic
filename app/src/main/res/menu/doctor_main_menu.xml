@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/menu_home">
+    <group android:id="@+id/doctor_menu_home">
 
         <item
             android:id="@+id/nav_home"
@@ -14,29 +14,24 @@
         <item
             android:id="@+id/book"
             android:icon="@drawable/book"
-            android:title="Book Appointment" />
+            android:title="All Appointments" />
 
         <item
             android:id="@+id/doctor"
-            android:icon="@drawable/doctor"
-            android:title="Doctors Available" />
+            android:icon="@drawable/dataentry"
+            android:title="Patient Data" />
         <item
             android:id="@+id/cancel"
             android:icon="@drawable/appointment"
             android:title="Cancel Appointment" />
         <item
             android:id="@+id/updates"
-            android:icon="@drawable/email"
-            android:title="Updates" />
+            android:icon="@drawable/medicine"
+            android:title="Prescribe Medicine" />
 
     </group>
     <group android:id="@+id/meny_bottom">
 
-
-        <item
-            android:id="@+id/support"
-            android:icon="@drawable/usersupport"
-            android:title="User Support" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/close"

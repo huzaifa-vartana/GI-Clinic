@@ -1,79 +1,33 @@
 {
   "project_info": {
-    "project_number": "54103085584",
-    "firebase_url": "https://hamaratv-52e1d.firebaseio.com",
-    "project_id": "hamaratv-52e1d",
-    "storage_bucket": "hamaratv-52e1d.appspot.com"
+    "project_number": "945396578912",
+    "project_id": "gi-clinic",
+    "storage_bucket": "gi-clinic.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:54103085584:android:0071fd863aa1e9dfa43095",
+        "mobilesdk_app_id": "1:945396578912:android:2fd2a208b1f41cac346105",
         "android_client_info": {
           "package_name": "com.example.adminpanel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "54103085584-je6vb2gp8a9gkdldo9p011dkr70j5hr3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.adminpanel",
-            "certificate_hash": "9e041d8af9e2cc307aeeac30a234cecf5c92687a"
-          }
-        },
-        {
-          "client_id": "54103085584-sgev9nivb82me23b3o8hl2u91tmeiki8.apps.googleusercontent.com",
+          "client_id": "945396578912-k6198pvm7h3b4dtlb8aiqk4u2817e0q6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDyYydQOup74Z-y1faiWf3Z5rM3OX-4G50"
+          "current_key": "AIzaSyCqIHfEPAitvTZoam-9JeGMLU49igVPbQA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "54103085584-sgev9nivb82me23b3o8hl2u91tmeiki8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:54103085584:android:c5668610eb3e9002a43095",
-        "android_client_info": {
-          "package_name": "pluralsight.com.horizontalrecyclerview"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "54103085584-s492p3394g8oiploiv24390anf3voltq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "pluralsight.com.horizontalrecyclerview",
-            "certificate_hash": "9e041d8af9e2cc307aeeac30a234cecf5c92687a"
-          }
-        },
-        {
-          "client_id": "54103085584-sgev9nivb82me23b3o8hl2u91tmeiki8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDyYydQOup74Z-y1faiWf3Z5rM3OX-4G50"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "54103085584-sgev9nivb82me23b3o8hl2u91tmeiki8.apps.googleusercontent.com",
+              "client_id": "945396578912-k6198pvm7h3b4dtlb8aiqk4u2817e0q6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
