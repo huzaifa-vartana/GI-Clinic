@@ -1,9 +1,12 @@
 package com.example.adminpanel;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -56,112 +60,60 @@ public class PatientUpdates extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
         listView = findViewById(R.id.listUpdates);
-        String[] values = new String[]{"Appointment Confirmed by staff",
+        final String[] values = new String[]{"Appointment Confirmed by staff",
                 "Appointment Cancelled",
                 "Reach the Clinic for appointment",
                 "Prescription Received"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        // Assign adapter to ListView
         listView.setAdapter(adapter);
-        // ListView Item Click Listener
-//        storageReference = FirebaseStorage.getInstance().getReference().child("TrendingImages");
-//        databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Trending");
-//        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Trending");
-//        databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-//                    count = Integer.parseInt(dataSnapshot1.getKey());
-//                }
-//                count++;
-//                aBoolean = true;
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-////          toggle.getDrawerArrowDrawable().setColor(Color.WHITE);
-//        btn2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imageFromStorage();
-//            }
-//        });
-//        btn1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addTrendingVideo();
-//            }
-//        });
-//    }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent browserIntent3 = new Intent(getApplicationContext(), AddNewEpisode.class);
+//                browserIntent3.putExtra("dramaName", mNames.get(position));
+//                startActivity(browserIntent3);
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(PatientUpdates.this);
+                builderSingle.setIcon(R.drawable.notification);
+                builderSingle.setTitle("Updates");
 
-//    private void imageFromStorage() {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("image/*");
-//        startActivityForResult(intent, ImageBack);
-//
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == ImageBack) {
-//            if (resultCode == RESULT_OK) {
-//                uri = data.getData();
-//                if (uri != null) {
-//                    final StorageReference imageName = storageReference.child("image" + uri.getLastPathSegment());
-//                    imageName.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-////                            Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
-//                            imageName.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    Log.d(TAG, String.valueOf(uri));
-//                                    imageUrl = String.valueOf(uri);
-//                                    isaBoolean = true;
-//                                    Picasso.get().load(uri).into(imageView);
-//                                    Toast.makeText(getApplicationContext(), "Image Uploaded to Storage", 0).show();
-//                                }
-//                            });
-//                        }
-//                    });
-//                }
-//            }
-//        }
-//    }
-//
-//    private void addTrendingVideo() {
-//        String t = title.getText().toString().trim();
-//        String d = description.getText().toString().trim();
-//        String iu = videoUrl.getText().toString().trim();
-//        String vu = imageUrl;
-////            "https://res.cloudinary.com/yaseenys/image/upload/v1589212091/Ozge_Yagiz_mh1578784358331_hgutm6.jpg"
-//        if (t.isEmpty() || d.isEmpty() || iu.isEmpty() || isaBoolean == false || imageUrl.equals("")) {
-//            Toast.makeText(getApplicationContext(), "Enter Data before uploading", 0).show();
-//        } else {
-//            if (aBoolean) {
-//                if (!iu.contains("https://")) {
-//                    iu = "https://" + iu;
-//                }
-//                ModelClassVideos trending = new ModelClassVideos(t, d, iu, vu);
-//                databaseReference1.child(String.valueOf(count)).setValue(trending);
-//                count++;
-//                Toast.makeText(getApplicationContext(), "New trending video added", 0).show();
-//                title.getText().clear();
-//                description.getText().clear();
-//                videoUrl.getText().clear();
-//                imageUrl = "";
-//            }
-//        }
-//    }
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PatientUpdates.this, android.R.layout.select_dialog_item);
+                arrayAdapter.add(values[position]);
+                arrayAdapter.add("Dummy data added");
+//                arrayAdapter.add("Reg #: 2017192");
+//                arrayAdapter.add("Faculty: FCS");
+//                arrayAdapter.add("Last Appointment: 25 December, 2020 - 16.00");
+//                arrayAdapter.add("Regular Doctor: Dr Subash");
 
+                builderSingle.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-//
+                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(PatientUpdates.this);
+                        builderInner.setMessage(strName);
+                        builderInner.setTitle("Full Details");
+                        builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builderInner.show();
+                    }
+                });
+                builderSingle.show();
+//                Toast.makeText(getApplicationContext(), episodeNames.get(position), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 

@@ -132,7 +132,7 @@ public class PatientData extends AppCompatActivity implements NavigationView.OnN
                 arrayAdapter.add("Last Appointment: 25 December, 2020 - 16.00");
                 arrayAdapter.add("Regular Doctor: Dr Subash");
 
-                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                builderSingle.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

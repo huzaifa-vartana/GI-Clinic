@@ -2,7 +2,6 @@ package com.example.adminpanel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -80,17 +79,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signIn() {
-        String email = e1.getText().toString().trim();
-        String pass = e2.getText().toString().trim();
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(pass)) {
-            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        String email = "a@a.com";
+        String pass = "admin.";
+//        if (TextUtils.isEmpty(email)) {
+//            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        if (TextUtils.isEmpty(pass)) {
+//            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         if (radioGroup.getCheckedRadioButtonId() == -1) {
             Toast.makeText(getApplicationContext(), "Select your option", Toast.LENGTH_SHORT).show();
             return;

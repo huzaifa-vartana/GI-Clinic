@@ -3,6 +3,7 @@ package com.example.adminpanel;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,7 @@ public class PatientHome extends AppCompatActivity implements NavigationView.OnN
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public Toolbar toolbar;
-    ImageView imageView1, imageView2, imageView3, imageView4;
+    ImageView imageView1, imageView2, imageView3, imageView4, imageView5;
     public static final String PREFS_NAME = "MyPrefsFile";
 
 
@@ -44,6 +45,8 @@ public class PatientHome extends AppCompatActivity implements NavigationView.OnN
         imageView2.setOnClickListener(this);
         imageView3.setOnClickListener(this);
         imageView4.setOnClickListener(this);
+        imageView5 = findViewById(R.id.ambulance);
+        imageView5.setOnClickListener(this);
         toolbar = findViewById(R.id.toolbar);
         navigationView.bringToFront();
         setSupportActionBar(toolbar);
@@ -182,6 +185,10 @@ public class PatientHome extends AppCompatActivity implements NavigationView.OnN
             startActivity(intent);
         } else if (v.getId() == R.id.updatesView) {
             Intent intent = new Intent(getApplicationContext(), PatientUpdates.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.ambulance) {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:03004416110"));
             startActivity(intent);
         }
 

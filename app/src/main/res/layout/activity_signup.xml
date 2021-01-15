@@ -31,6 +31,7 @@
             android:layout_width="250dp"
             android:layout_height="59dp"
             android:layout_gravity="center"
+
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/person"
             android:drawablePadding="8dp"

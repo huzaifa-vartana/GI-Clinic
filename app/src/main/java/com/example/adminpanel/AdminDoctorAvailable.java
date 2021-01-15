@@ -1,6 +1,7 @@
 package com.example.adminpanel;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -113,7 +115,45 @@ public class AdminDoctorAvailable extends AppCompatActivity implements Navigatio
 //                Intent browserIntent3 = new Intent(getApplicationContext(), AddNewEpisode.class);
 //                browserIntent3.putExtra("dramaName", mNames.get(position));
 //                startActivity(browserIntent3);
-//                Toast.makeText(getApplicationContext(), mNames.get(position), Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(AdminDoctorAvailable.this);
+                builderSingle.setIcon(R.drawable.identification);
+                builderSingle.setTitle("Contact Information");
+
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(AdminDoctorAvailable.this, android.R.layout.select_dialog_item);
+                arrayAdapter.add(doctorArray[position]);
+                arrayAdapter.add(availableArray[position]);
+                arrayAdapter.add("Email");
+                arrayAdapter.add("Extension");
+//                arrayAdapter.add("Reg #: 2017192");
+//                arrayAdapter.add("Faculty: FCS");
+//                arrayAdapter.add("Last Appointment: 25 December, 2020 - 16.00");
+//                arrayAdapter.add("Regular Doctor: Dr Subash");
+
+                builderSingle.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(AdminDoctorAvailable.this);
+                        builderInner.setMessage(strName);
+                        builderInner.setTitle("Full Details");
+                        builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builderInner.show();
+                    }
+                });
+                builderSingle.show();
+//                Toast.makeText(getApplicationContext(), episodeNames.get(position), Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -125,7 +125,7 @@ public class DoctorHome extends AppCompatActivity implements NavigationView.OnNa
                 break;
             case R.id.logout:
                 Toast.makeText(getApplicationContext(), "Logged Out", 0).show();
-                finish();
+                finishAffinity();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

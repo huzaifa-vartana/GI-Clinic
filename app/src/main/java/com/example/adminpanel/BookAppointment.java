@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -37,7 +38,8 @@ public class BookAppointment extends AppCompatActivity implements NavigationView
     private static final String[] paths = {"9.00", "9.30", "10.00", "16.00"};
     EditText date_time_in;
     Button b1;
-    EditText e1, e2, e3, e4, e5, e6;
+    EditText e1, e2, e3, e6;
+    AutoCompleteTextView e4, e5;
     private Spinner spinner;
 
     @Override
@@ -77,6 +79,12 @@ public class BookAppointment extends AppCompatActivity implements NavigationView
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        String[] countries = {"FCS", "FES", "FME", "FCE", "FCVE", "FEEE", "FEEP", "FMCE"};
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, countries);
+        e4.setAdapter(adapter1);
+        String[] qualification = {"Bachelors", "Masters", "Phd", "Teaching Faculty"};
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, qualification);
+        e5.setAdapter(adapter2);
 
 
     }
@@ -138,38 +146,6 @@ public class BookAppointment extends AppCompatActivity implements NavigationView
 
 
     }
-//
-//    private void showDateTimeDialog(final EditText date_time_in) {
-//        final Calendar calendar = Calendar.getInstance();
-//        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-//
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                calendar.set(Calendar.YEAR, year);
-//                calendar.set(Calendar.MONTH, month);
-//                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//
-//                TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-//                        calendar.set(Calendar.MINUTE, minute);
-//
-//                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
-//
-//                        date_time_in.setText(simpleDateFormat.format(calendar.getTime()));
-//                    }
-//                };
-//
-//                new TimePickerDialog(BookAppointment.this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show();
-//
-//            }
-//        };
-//
-//        new DatePickerDialog(BookAppointment.this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
-//
-//    }
 
     private void showDateDialog(final EditText date_time_in) {
         final Calendar calendar = Calendar.getInstance();
